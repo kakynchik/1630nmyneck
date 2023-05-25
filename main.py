@@ -7,4 +7,4 @@ if response.status_code == 200:
     title = soup.find('title').text
     print(title)
 else:
-    print("Немає підключення ", response.status_code)
+    print("Немає підключення ", response.status_code) 
