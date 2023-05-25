@@ -1,16 +1,18 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+"""import urllib.request
+opener = urllib.request.build_opener()
+response = opener.open ("https://httpbin.org/")
+print(response.read())
+print("riznica")"""
+import requests
+response = requests.get("https://httpbin.org/")
+"""print(response.text)
+response_parse = response.text.split("<span>")
+for elem in response_parse:
+    if elem.startswith("$"):
+        print(elem)"""
+from bs4 import BeautifulSoup
+if response.status_code == 200:
+    soup = BeautifulSoup(response.text, features= "html.parser")
+    soup_list = soup.findAll('a', {'href': "/currencies/bitcoin/markets/"})
+    res = soup_list[0].find("span")
+    print(res.text)
